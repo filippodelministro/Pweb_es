@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it-IT" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+	<head>
+	<meta charset= "utf-8">
+	<title>Slot Machine</title>
+		<style>
+			body{
+				text-align: center;
+				font-weight: bold;
+				color: black;
+			}
+			#slotMachine{
+				background-color: Gainsboro;
+			}
+			p{
+				font-size: 36px;
+			}
+			div{
+				width: fit-content;
+				height: min-content;
+			}	
+			button {
+				padding: 0.4em;
+				font-size: 16px;
+				font-weight: bold;
+			}
+			input{
+				text-align: right;
+				width: 4em;
+				font-weight: bold;
+				font-size: 20px;
+			}
+			.divlane{
+				margin: 2em;	
+				display: inline-block;
+			}
+			.inputsquare {
+				text-align:center;
+				width: 2em;
+				height: 2em;
+				border-style: solid;
+				border-color: black;
+				background-color: white;
+				border-width: 0.1em; 
+				display:block;
+			}
+			.slot {
+				padding: 0.1em;
+				font-size: 36px;
+				border: solid;
+				border-style: inset; 
+				border-width: thick; 
+				text-align: center;
+				margin:0.3em;
+			}		
+		</style>
+	
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:MediaServiceImageTags msdt:dt="string"></mso:MediaServiceImageTags>
+<mso:lcf76f155ced4ddcb4097134ff3c332f msdt:dt="string"></mso:lcf76f155ced4ddcb4097134ff3c332f>
+<mso:TaxCatchAll msdt:dt="string"></mso:TaxCatchAll>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+	<body onLoad="begin()">  
+		<div id="slotMachine">
+			<p>Slot Machine</p>
+			<div id="slot">
+			</div>
+			<div id="keypad">
+				<span>
+					Puntata: <input id = "bet" type="text" value="0">&#8364;</span>
+  				<button id="start"	type="button" onclick="start();">Avvia</button>
+  				<button id="stop" 	type="button" onclick="stop();" disabled="disabled">Ferma</button>
+			</div>
+		</div>
+	
+		<script>
+			const DEFAULT_INTERVAL_TIMER = 100; // Default interval to test the application (see the start() function)
+			const resultMessages = ["Hai perso", "Hai vinto"]; // Messages to be printed for the results.
+			const errorMessage = "Il valore della puntata deve essere compreso tra 1 e 100. Inserisci un nuovo valore";// Messages to be printed for wrong bet.
+			
+			var _windowResult;				// Window where the results are printed.
+			let column=new Array();	// Two-dimensional array which contains the objects input with the numbers
+			let slots = new Array(); 		// The array contains slot inputs (see the begin() function)
+			let intervalsId = new Array();	// The array contains timers to scroll the slots (see the start() function)
+			let bet;
+
+			// Checks the amount of the bet (it must be between 1 and 100 euros).
+			// Return true if all ok, false otherwise.
+			function checkBet(bet){
+				console.log("bet = " + bet)
+				if (bet < 1 || bet > 100 || isNaN(bet))
+					return false;
+					
+				return true;
+			}
+			//Changes the button-status of slot machine
+			function updateButtonStatus(){
+				const button = document.getElementById("keypad").getElementsByTagName("button");
+				for (let i = 0; i < 2; i++)
+					button[i].disabled = !button[i].disabled;	
+			}	
+			// Slide on th column.
+			function slide(index){
+				column[index][slots[index]].style.background="white";
+				slots[index]=(slots[index]+1)%10;
+				column[index][slots[index]].style.background="red";		
+			}	
+
+			function begin() {
+				slot=document.getElementById("slot");
+				for (let i = 0; i < 3; i++)
+				{
+					temp = document.createElement("div"); // create the column
+					temp.id = "column" + i;
+					temp.setAttribute("class", "divlane");
+					column[i]=new Array();
+					for (let j=0; j<10; j++)
+					{ 
+						column[i][j] = document.createElement("input");
+						column[i][j].value=j;
+						column[i][j].setAttribute("class", "inputsquare");
+						column[i][j].setAttribute("readonly", "true");
+						temp.appendChild(column[i][j]);  
+					}			
+					slot.appendChild(temp);
+				}
+			}
+		
+			// Checks bet and sets different interval for each slots.
+			// If you want to test the victory, please, uncomment last line.
+			function start(){
+				console.log("start()")
+				bet = parseInt(document.getElementById("bet").value);
+				if (!checkBet(bet)){
+					alert(errorMessage);
+					return;
+				}
+				//Change the status of the button
+				updateButtonStatus();
+				
+				for (let i = 0; i < 3; i++){
+					const intervalTimer = Math.floor(Math.random()*6)*10+50;
+					slots[i]=Math.floor(Math.random()*10);
+					intervalsId[i] = setInterval("slide("+ i +")", intervalTimer);	
+					// TEST FOR WIN
+					//slots[i]=0;
+					//intervalsId[i] = setInterval("slide("+ i +")", DEFAULT_INTERVAL_TIMER); 
+				}
+
+			}
+			// Clear intervals and show message result.
+			function stop(){
+				console.log("stop()")
+
+				// Change button status
+				updateButtonStatus();
+				//Clear interval
+				for (let i = 0; i < 3; i++)
+					setTimeout("clearInterval(intervalsId["+i+"])",i*1000);
+				setTimeout("closeGame()",3000);
+			}
+			
+			// Checks if the player has won. 
+			// Return 1 if the player has won, 0 otherwise.
+			function checkWin(){
+				for (let i = 0; i < 2; i++)
+					if (slots[i] != slots[i+1])
+						return 0;
+						
+				return 1;
+			}
+			function restart()
+			{
+				console.log("restart()")
+
+				for (let i=0; i<3; i++)
+					column[i][slots[i]].style.background="white";
+				document.getElementById("bet").value=0;
+				_windowResult.close();                                                             
+			}
+			function showMessage(mess) {
+				console.log("showMessage()")
+				if ((_windowResult == null) || (_windowResult.closed)) {
+					_windowResult = window.open("", "Game", "width=300,height=200,resizable=yes,location=no,menubar=no,toolbar=no,titlebar=no");
+					_windowResult.document.open(); 
+					_windowResult.document.write('<!DOCTYPE html>');   
+					_windowResult.document.write('<html><head>  <meta charset="utf-8"> <title>Result</title> <style type="text/css">' +
+							'#resultTextWindow{' + 
+						'font-size:			24px;' + 
+						'font-weight:		bold;' +
+						'font-family:		"Arial","Serif";' +
+						'color:				black;' +
+						'font-weight: 		bold;' +
+						'background-color: 	white;' +
+						'text-align: center;' +
+						'}</style></head>');
+					_windowResult.document.writeln('<body><p id="resultTextWindow">');
+					_windowResult.document.writeln(mess + "<br>");
+				}
+			}
+			//Close game and open window
+			function closeGame()
+			{
+				console.log("closeGame()")
+				// Checks results and shows it
+				const result = checkWin();
+				console.log("result = " + result)
+				
+				if (result == 0)
+					showMessage(resultMessages[result]); // player has lost
+				else
+					showMessage(resultMessages[result] + "<br>" + bet * 10); // player has won
+				setTimeout("restart()", 5000);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+    <head>
+        <title>Un menu che compare da sinistra</title>
+        <style>
+            .mymenu {
+                background-color:honeydew;
+                border: solid 2px black;
+                width: 200px;
+                position: absolute;
+                left: -190px;
+                transition: left 1s ease-out;
+                margin: 0px;
+                padding: 10px;
+            }
+            .mymenu li {
+                list-style-type: none;
+                font-size: large;
+                font-weight: bold;
+                padding-left: 20px;
+                line-height: 150%;
+                font-family: sans-serif;
+            }
+            .mymenu:hover{
+                left: 0px;
+            }
+        </style>
+    
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:MediaServiceImageTags msdt:dt="string"></mso:MediaServiceImageTags>
+<mso:lcf76f155ced4ddcb4097134ff3c332f msdt:dt="string"></mso:lcf76f155ced4ddcb4097134ff3c332f>
+<mso:TaxCatchAll msdt:dt="string"></mso:TaxCatchAll>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+    <body>
+        <ul class="mymenu">
+            <li>Opzione 1</li>
+            <li>Opzione 2</li>
+            <li>Opzione 3</li>
+            <li>Opzione 4</li>
+        </ul>
+    </body>
+</html>

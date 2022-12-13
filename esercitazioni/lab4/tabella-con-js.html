@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+    <head>
+        <title>Tabella costruita con JS</title>
+        <meta charset="utf-8">
+        <style>
+            table {
+                border: solid 1px blue;
+                border-collapse: collapse;
+            }
+            td {border: solid 1px blue;}
+            td.pr {background-color: aqua;}
+        </style>
+    
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:MediaServiceImageTags msdt:dt="string"></mso:MediaServiceImageTags>
+<mso:lcf76f155ced4ddcb4097134ff3c332f msdt:dt="string"></mso:lcf76f155ced4ddcb4097134ff3c332f>
+<mso:TaxCatchAll msdt:dt="string"></mso:TaxCatchAll>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+    <body>  
+        <script>
+        let numero = 1;
+        function primo(n) {
+            let sqrtn = Math.sqrt(n);
+            let isprime = n != 1;
+            for(let i=2; i<=sqrtn; i++) {
+                if(n % i == 0) {
+                    isprime = false;
+                    break;
+                }
+            }
+            return isprime;
+        }
+        function creaRiga(col){
+            document.write("<tr>");
+            for(let i = 0; i<col; i++) {
+                let p = primo(numero);
+                let s = "<td " + (p ? "class='pr'" : "") + ">" + numero++ + "</td>";
+                document.write(s);
+            }
+            document.write("</tr>");
+        }
+        function creaTabella(righe, colonne) {
+            document.write("<table>");
+            for(let i = 0; i<righe; i++)
+                creaRiga(colonne);
+            document.write("</table>");
+        }
+        let r = prompt("Quante righe?", "5");
+        let c = prompt("Quante colonne?", "4");
+        creaTabella(r, c);
+        </script>
+    </body>
+</html>

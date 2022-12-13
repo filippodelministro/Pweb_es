@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+	<head>
+		<meta http-equiv = "Content-Type" content = "text/html;  charset=ISO-8859-1">
+		<title>Number Ordering</title>
+
+		<!-- CSS -->
+		<style type="text/css">
+			body{
+				text-align: left;
+				font-weight: bold;
+				color: black;
+			}		
+			p{
+				font-size: 56px;
+			}
+			div{
+				width: 60em;
+				float: none;
+			}
+			button {
+				padding: 0.4em;
+				font-size: 16px;
+				font-weight: bold;
+			}
+			.inputScore{
+				text-align: right;
+				width: 2em;
+				font-weight: bold;
+				font-size: 20px;
+				margin-right: 1em;
+				margin-bottom: 2em;
+			}
+			.divrow{
+				margin: 0em;	
+				padding: 0em;
+				border: 0em;
+				height: 3em;
+			}
+			.inputSquare {
+				width: 3em;
+				height: 3em;
+				border-style: solid;
+				border-color: black;
+				background-color: white;
+				border-width: 0.1em; 
+				text-align: center;
+				font-weight: bold;
+				font-size: 0.9em;				
+			}
+				
+		</style>
+
+		<!-- Javascript -->
+		<script type="text/javascript">
+			let _windowResult;		// Window where the results are printed.
+			let idRed; // current identifier of the red square
+			let wasStarted = false;
+				
+			// Changes the button-status of slot machine
+			function updateButtonStatus(){
+				const button = document.getElementById("start");
+					button.disabled = !button.disabled;	
+			}		
+					
+			// Initializes matrix
+			function begin(){
+				game=document.getElementById("Game");
+				let row;
+				let square;	 
+				for (let i = 0; i < 16; i++)
+				{
+					if (i%4==0)
+					{
+						row = document.createElement("div"); // create the row
+						row.setAttribute("class", "divrow");
+						game.appendChild(row);
+					}
+					square = document.createElement("input"); // create the square
+					square.setAttribute("class", "inputSquare");
+					square.setAttribute("readonly", "readonly");
+					square.setAttribute("onClick","handle(this)");
+					if (i<15) 
+						square.value=i;
+					else 
+						square.style.backgroundColor="red";
+					idRed=square.id = "square" + i;
+					row.appendChild(square);
+				}	
+				
+				wasStarted = false;
+			}
+			// start
+			function start(){
+				updateButtonStatus();
+				let randomNumber = Math.floor(Math.random()*15);
+				let i = randomNumber;
+				let indexElem = 0;
+				do
+				{ 
+					//il quadrato corrispondente al numero estratto viene posizionato nella prima posizione della matrice
+					//Quindi vengono in sequenza posti tutti i quadrati che hanno stampato il numero che corrisponde 
+					//allâ&#8364;&#8482;applicazione dellâ&#8364;&#8482;operazione di resto tra il numero precedente incrementato di 2 e 15. 
+					document.getElementById("square" + indexElem).value = i;
+					indexElem++;
+					i=(i+2)%15;
+				} while (i!=randomNumber);
+				
+				wasStarted = true;
+			}
+		
+			function verify()
+			{	 
+				for (let i = 0; i < 15 ; i++){
+					if (("square"+i) == idRed || document.getElementById("square"+i).value != i)
+						return false;
+				}
+				console.log ("true")
+				return true;
+			}
+			
+			function handle(elem)
+			{
+				if (! wasStarted || elem.style.backgroundColor=="red") 
+					return;
+
+				const redInput = document.getElementById(idRed);	
+				redInput.value=elem.value;
+				redInput.style.backgroundColor="white";
+				elem.style.backgroundColor="red"; 
+				elem.value=null;
+				idRed=elem.id;
+
+				document.getElementById("score").value = parseInt(document.getElementById("score").value) + 1;
+				if (verify())
+				{
+					wasStarted = false;
+					openWindow();
+					score=parseInt(document.getElementById("score").value);
+					showResult("Numero di mosse effettuate:", score);
+					setTimeout("stopWindow()", 5000);
+				}
+			}
+					
+			function openWindow() {
+				if ((_windowResult == null) || (_windowResult.closed)) {
+					_windowResult = window.open("", "Score", "width=600,height=400,resizable=yes,location=no,menubar=no,toolbar=no,titlebar=no");
+					_windowResult.document.open();                                                          
+					_windowResult.document.writeln('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"');   
+					_windowResult.document.writeln('"http://www.w3.org/TR/html4/strict.dtd">');
+					_windowResult.document.writeln('<html><head><title>Result</title><style type="text/css">' +
+						'#resultTextWindow{' + 
+						'font-size:			24px;' + 
+						'font-weight:		bold;' +
+						'font-family:		"Arial","Serif";' +
+						'color:				black;' +
+						'font-weight: 		bold;' +
+						'background-color: 	white;' +
+						'text-align: center;' +
+						'}</style></head>');
+					_windowResult.document.writeln('<body><p id="resultTextWindow">');
+				}
+			}
+					
+			function showMessage(mess) {		 
+				_windowResult.focus();
+				_windowResult.document.writeln('<p>' + mess);
+			}  
+			
+			function showResult(resultMessage, payoff) {		 
+				showMessage(resultMessage);
+				_windowResult.document.writeln(payoff + '</p>');	
+			}  
+					
+			function closeWindow() {
+				_windowResult.document.writeln('</p></body></html>');                                      
+				_windowResult.close();                                                             
+			}
+								
+			// Close the window and reset the service.
+			function stopWindow(){
+					document.getElementById("score").value = 0;	
+				// Change button status
+					updateButtonStatus();
+					closeWindow();
+			}						
+		</script>
+
+	
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:MediaServiceImageTags msdt:dt="string"></mso:MediaServiceImageTags>
+<mso:lcf76f155ced4ddcb4097134ff3c332f msdt:dt="string"></mso:lcf76f155ced4ddcb4097134ff3c332f>
+<mso:TaxCatchAll msdt:dt="string"></mso:TaxCatchAll>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+	<body onLoad="begin()">  
+		<div id="Game">
+			<span>Score: <input id="score" class="inputScore"	type="text" readonly value="0"></span>
+			<button id="start" onclick="start()">START</button>
+		</div>
+	</body>
+</html>
