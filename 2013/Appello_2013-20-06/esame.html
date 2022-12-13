@@ -1,0 +1,125 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Car Race</title>
+    
+    <!-- CSS -->
+    <style type="text/css">
+        body{
+            text-align: center;
+            font-weight: bold;
+        }
+
+        p{
+            font-size: 56px;
+        }
+
+        div{
+            width: 60em;
+        }
+        
+        button{
+            padding: 0.4em;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+		input{
+			text-align: right;
+			width: 2em;
+			font-weight: bold;
+			font-size: 20px;
+			margin-right: 1em;
+			margin-bottom: 2em;
+		}
+
+        .divlane{			
+			margin: 0.5em;	
+			height: 3em;
+		}
+
+        .divsquare {
+		  	float: left;
+				width: 1em;
+		  	height: 1em;
+		  	border-style: solid;
+				border-color: black;
+				background-color: white;
+				border-width: 0.1em; 
+				display:inline
+		}
+
+    </style>
+    </head>
+
+    <!-- Javascript -->
+    <script type="text/javascript">
+        
+        var _windowResult;
+        var errorMessage;
+        var posCar = new Array();
+        var clock;
+
+        // Initializes variables
+        function begin(){
+            race=document.getElementById("racetrack");
+            var temp;
+            var nome;	 
+            for (var i = 0; i < 3; i++){        //creo tre linee => sono div
+                posCar[i]=0; //all the cars are in positions 0
+
+                lane = document.createElement("div"); 
+                lane.id = "lane" + i;                   // hanno questo ID
+                lane.setAttribute("class", "divlane");  // e questi attributi 
+
+                for (var j=0; j<20; j++){ 
+                    temp = document.createElement("div");
+                        temp.setAttribute("class", "divsquare");
+                        lane.appendChild(temp);  
+                }			
+                race.appendChild(lane);
+                elemDiv=lane.getElementsByTagName("div");
+                elemDiv[0].style.backgroundColor="red";
+            }		
+        }
+	
+        // start
+        function start(){
+        var bet=document.getElementById("bet");
+            var inputfield = bet.getElementsByTagName("input");	
+            for (var i=0; i<3;i++)
+            {
+                    bet = parseInt(inputfield[i].value);
+                    if (!checkBet(bet)){
+                        showError();
+                        return;
+                        }
+            }		
+            updateButtonStatus();
+            clock=setInterval("update()", 1000);
+        }
+
+
+    </script>
+   
+    <!-- BODY -->
+    <body onLoad="begin()">
+        <div id="Race">
+            <p>Car Race</p>
+            <div id="bet">
+                <span>Lane 1: <input type="bet1" class="bet" type="text" value="0"></span>
+                <span>Lane 2: <input type="bet2" class="bet" type="text" value="0"></span>
+                <span>Lane 3: <input type="bet3" class="bet" type="text" value="0"></span>
+            
+                <button id="start" onclick="start()">START</button>
+            </div>
+
+            <div id="racetrack"></div>
+
+        </div>
+    </body>
+</html>
+
