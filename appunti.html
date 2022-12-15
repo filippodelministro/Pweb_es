@@ -1,3 +1,7 @@
+<!--    
+////////////////////////////////////////////////////////////////////////////
+///                         HTML                                         ///
+////////////////////////////////////////////////////////////////////////////-->
 
 · <H1></H1>
     serve per definire l'importanza del titolo: definire poi lo stile si farà in CSS
@@ -14,6 +18,7 @@
                 diverse proprietà CSS ad ogni elemento div
 
 
+ <!-----------   LINK    ------------>
 · <a></a>   
     - <a>nomelink</a>
     - <a href="http://www.facebook.com"></a>        per una pagine specifica o pagine interne al sito
@@ -23,11 +28,25 @@
             - _blank:       nuova pagina
             - _top:         ??
 
+· <area shape="circle" coords="0,0,82,126" href="something.html">   crea un link a qualcosa, definendo
+            una certa area
 
+· <iframe src="" frameborder="0"></iframe>      è codice HTML annidato: possiamo definire alcuni aspetti di
+sicurezza con sandbox
 
+ <!-----------   ELEMENTI GRAFICI    ------------>
+
+· <embed src="movie.mp4">           
 
 · <img>  per foto: è necessario dire il path di ogni elemento image
     - <img src="dir/path/path1images.png" alt="alternative" title="ImgTitle" width="80" height="40"/>
+
+· <video src="movie.mp4"></video>               sono elementi video: è possibile definirne anche con elem
+    - autoplay                                  source che definiscono la sorgente del video in questione
+    - controls
+    - loop
+    - muted
+    - preload
 
 · <ul></ul>                     unorder list
     <li></li>                   singolo pallino
@@ -37,6 +56,7 @@
 · <dl></dl>
 
 
+ <!-----------   ELEMENTI TESTUALI    ------------>
 
 · <head></head>         contiene info relative alla pagina che non vendono visualizzate a schermo:
                         qui si definiscono il linguaggio, e altri valori
@@ -55,11 +75,11 @@
             <p></p>             //questo sarà nascosto, e "sbloccato"
 · <aside></aside>       è una sezione che rimane sulla destra o sinistra della pagina (va definito il come con CSS)
 
-· separatori:
+
+ <!-----------   ALTRO    ------------>
+    · separatori:
         <br>            va a capo
         <hr>            linea
-
-
 
 
 · caratteri speciali
@@ -69,3 +89,9 @@
     &trade;         trademark
  
     
+
+ <!-----------   APPUNTI A CASO    ------------>
+· In genere è importante usare gli elemenenti specifici per situazioni specifiche: non usare solo DIV per
+tutto, ogni elemento per il ruolo che ha
+· Non tutti gli elementi HTML possono stare in ogni altro elemento
+
