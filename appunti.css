@@ -62,4 +62,37 @@ Ci sono tre modi per definire CSS:
     */
 
      
+    /**DIMENSIONI
+    · Liquid Layout: si definisce la percentuale dello spazio che deve occupare un certo elemento
+                    e non la sua dimensione assoluta
+    · Hybrid Layout: di definiscono le dimensioni in modi assoluti e relativi
+    */
+
+
+    /**RESPONSIVE LAYOUT
+    Il layout di una pagina cambia dalla dimensione dello schermo in cui verrà visualizzato: gli
+    elemeniti vengono visualizzati in modo diverso, ma comunque ci saranno tutti
+        · liquid layout
+        · scaling delle immagini
+        · CSS diversi per destinazioni diverse
+            - ci sarà poi un link diverso ad ogni file css diverso
+
+        La VIEWPORT definisce lo spazio di visualizzazione:
+    */
+
+    
+    /**TRASNSAZIONE
+    Permette il passaggio da una situazione ad un altra in modo graduale
+    */
+
+    /*Sposta il menu in posizione visibile quando ci avviciniamo con il mouse*/
+    .menu{
+        position: absolute;
+        left: -210px;
+    }
+    .menu:hover{
+        left: 0;
+        transition: left .6s ease-out;
+    }
+
 
