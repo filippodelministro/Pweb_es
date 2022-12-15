@@ -1,0 +1,57 @@
+/*  
+////////////////////////////////////////////////////////////////////////////
+///                         CSS                                         ///
+////////////////////////////////////////////////////////////////////////////-->
+
+Serve per definire alcune variabili grafiche del codice HTML
+
+Ci sono tre modi per definire CSS:
+    · inline: style agli elementi stessi => scomoda perchè non separo il contenuto dalla presentazione
+    · embedded: elem style dentro HTML => è meglio del primo modo, ma comunque poco flessibile
+    · esterna: file diversi tra HTML e CSS, e collegati tra loro
+        - tra l'altro permette di usare modi diversi in contesti diversi (mobile, desktop ecc.) 
+    <link rel="stylesheet" href="style.css">    questo consente collegamento
+
+
+    selecto {property : value, property2 : value}  /*applico valore value alla regola property del selettore selector */
+
+
+    /**ELEMENTO*/
+    em {color : red}     tutti gli EM saranno rossi
+    p, div, text{
+        color : yellow;
+        padding: 0%;
+    }
+
+    /**CLASSE
+    magari possio applicare a stesso eleme e ho effetti diversi*/
+    .first{                     
+        font-style: italic;
+        color: rgba(161, 114, 114, 0.482);
+    }
+    .second{    
+        font-style: italic;
+        color: blue;
+    }
+
+    /**ID
+    quando voglio agire in modo diverso sul singolo elemento*/
+    #nomeID{
+        font-style: italic;
+        color: green;
+    }
+
+    /**PSEUDO ELEMENT
+    permette di differenziare CSS diversi per diverse situazioni dell
+    stesso elemento*/
+    a:link {
+        text-decoration: underline;
+        color: blue;
+    }
+    a:visited{
+        text-decoration: underline;
+        color: purple;
+    }
+
+
+
