@@ -53,5 +53,13 @@ Ci sono tre modi per definire CSS:
         color: purple;
     }
 
+    /**MARGIN E PADDING
+    · Margin: spazio tra due elementi
+        I margin collassano tra di loro sull'asse verticale: non si somma il margin
+        di sotto di un elemento con il margin di sopra di un altro elemento
+    · Padding: cornice di un certo elemento
+    · Border-box: considera direttamente la grandezza di un elemento
+    */
 
+     
 
