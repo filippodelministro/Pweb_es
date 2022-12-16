@@ -75,4 +75,6 @@ p{
     border:1px solid #000
 }
 
-
+html{
+    border-style: dotted;
+}

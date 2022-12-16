@@ -1,0 +1,47 @@
+/* Impostare la lunghezza di ogni immagine al 100px */
+img{
+    width: 100px;
+  }
+  
+  /* Mettere un bordo tratteggiato di 1px a tutte le sezioni */
+  section{
+    border-style: dotted;
+  }
+  
+  /* Colorare lo sfondo di rosso del titolo di Youtube */
+  #Youtube h1{
+    background-color: red;
+  }
+
+
+  /* Colorare lo sfondo di giallo di tutti i link "Torna su" */
+  .top{
+    background-color: yellow;
+  }
+
+  /* Quando si passa sopra i link "Torna su" cambiare il background in rosso e mettere il font a 50px */
+  a.top:hover{
+    background-color: red;
+    font-size: 50px;
+  }
+  
+  /* Colorare di rosso la scritta "100 lingue" */
+  div span strong{
+    color: red;
+  }
+  
+  
+  /* Colorare di verde lo sfondo della scritta "primo servizio" */
+  div em{
+    color: green;
+  }
+  
+  /* Mettere un bordo spesso 5px intorno all'immagine di Youtube */
+  #Youtube img{
+    border: 5px solid black;
+  }
+  
+  /* Provare la differenza tra attribute *= value e attribute ~= value */
+  
+  
+  
