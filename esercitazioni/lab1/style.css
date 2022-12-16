@@ -1,0 +1,78 @@
+
+/*
+ul {
+    margin: 5;
+    padding: 5;
+    background-color: green;
+}
+li {
+    float: left;
+}
+li v {
+    color: white;
+    text-align: center;
+    padding: 5;
+}
+li v:hover {
+    background-color: #111;
+}
+.active {
+    background-color: green;
+}
+
+p{
+    background-color: yellow;
+}
+
+#button{
+    text-decoration: bold;
+}
+*/
+
+
+/*----------- MENU ------------------*/      
+
+.vertical-menu {
+    width: 200px;
+}
+
+.vertical-menu a{
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+
+/*-------- IMAGE -------------*/
+.pic{
+    width: 300px;
+    margin: auto;
+    padding: auto;
+}
+
+.logo{
+    width: 8%;
+    margin: auto;
+    padding: auto;
+}
+
+.rect{
+    background-color: #04AA6D;
+    width:auto;
+    height: 100px;;
+    margin: 0 auto;
+    border:1px solid #000
+}
+
+
