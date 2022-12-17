@@ -42,6 +42,7 @@ img{
   }
   
   /* Provare la differenza tra attribute *= value e attribute ~= value */
-  
+[alt*="cebo"] {background-color: black;}
+/*[alt~="cebo"] {background-color: yellow;}*/
   
   

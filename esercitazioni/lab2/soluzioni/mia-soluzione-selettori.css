@@ -40,9 +40,9 @@ div>em {
 /* ~= Represents elements with an attribute name of attr whose value 
       is a whitespace-separated list of words, one of which is exactly 
       value.*/
-[alt*="cebo"] {background-color: black;}
-[alt~="cebo"] {background-color: blue;}
-
+/*[img*="cebo"] {background-color: black;}
+[img~="cebo"] {background-color: blue;}
+*/
 /* Quando si passa sopra i link "Torna su" cambiare il background in rosso e mettere il font a 50px */
 a.top:hover {
   background-color: red;
