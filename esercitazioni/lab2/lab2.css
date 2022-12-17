@@ -6,11 +6,18 @@ h1{
 }
 
 
-td {
+td{
     border: 1px solid;
     width: 50px;
     height: 50px;
+    transition: rotateY 2s, background-color 2s;
   }
+  td:hover{
+    /*width: 100px;*/
+    transform : rotate(90deg);
+  }
+
+
   /*per tutte le righe dispari, le celle dispari sono nere, le altre bianche*/
   tr:nth-child(odd) > td:nth-child(odd) {
     background-color: black;
@@ -18,7 +25,20 @@ td {
   /*per tutte le righe pari, le celle pari sono nere, le altre bianche*/
   tr:nth-child(even) > td:nth-child(even) {
     background-color: black;
-  }  
+  }
+  
+  
+  /*quando passo sopra le nere diventano rosse, sulel bianche diventano blu
+  tr:nth-child(odd):hover > td:nth-child(odd):hover{
+    background-color: red;
+  }
+  tr:nth-child(even):hover > td:nth-child(even):hover{
+    background-color: red;
+  }
+  td:hover{
+    background-color: blue;
+  }
+*/
 
 
 
@@ -43,7 +63,7 @@ div{
   /* fare una rotazione di 90 gradi e cambiare il colore in giallo al passaggio del mouse */
   div:hover{
     width: 100px;
-    rotate: 90deg;
+    transform: rotate(90deg);
     background-color: yellow;
   }
   
