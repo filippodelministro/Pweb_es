@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="CSS Selectors">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="lab4.css">
+    <title>Lab4</title>
+</head>
+    <header>
+        <div class="menu">
+            <ul>
+                <li> <a href="./lab4.html">lab4</a> </li>
+                <li> <a href="./home.html">home</a> </li>
+            </ul>
+        </div>
+        
+    </header>
+
+    <body>
+        <h1>QUESTA E' LAB4</h1>
+
+        
+        <script>
+            let numero = 1;
+
+            //dato un numero, dice se è primo
+            function primo(n){
+                let isprime = true;
+
+                for(let i=2; i<n; i++){
+                    if(n%i == 0){
+                        isprime = false;
+                        break;
+                    }
+                }    
+                
+                return isprime;
+            }
+        
+
+            function creaRiga(c){
+                document.write("<tr>")
+                for(let i=0; i<c; i++){
+                    let p = primo(numero);
+                    document.write("<td " + (p ? "class='pr'" : "") + ">" + numero++ + "</td>");
+                }
+                document.write("</tr>");
+            }
+            
+
+            function creaTabella(){
+                document.write("<table>");
+                let r = prompt("righe?");
+                let c = prompt("colonne?");
+
+                for(let i=0; i<c; i++){
+                    creaRiga(r);
+                    document.write("<br>");
+                }
+                document.write("</table>");
+            }
+
+            creaTabella();
+        </script>
+
+    </body>
+
+    
+
+
+</html>
