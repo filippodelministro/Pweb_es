@@ -176,16 +176,17 @@ Statistico.prototype.stampa = function() {
 // funzione eseguita al caricamento della pagina
 function main() {
 	const voti = window.prompt(MESSAGGI_UTENTE[0]);
-    if (voti == null)
-		return;
+	if (voti == null)
+	return;
 	
 	const stat = new Statistico(voti);
     if (!stat.datiOk())				
-        return;
-        
+	return;
+	
+    /*
 	stat.calcolaMinimo();	
     stat.calcolaMassimo();
     stat.calcolaMedia();
-    stat.calcolaVariabilita();
+    stat.calcolaVariabilita();*/
     stat.stampa();
 }
